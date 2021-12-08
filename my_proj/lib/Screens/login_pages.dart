@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:my_proj/Screens/home_screen.dart';
 import 'package:my_proj/Screens/profile_page.dart';
 import 'package:my_proj/Screens/register_page.dart';
 import 'package:my_proj/utils/fire_auth.dart';
@@ -13,7 +13,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final _formKey = GlobalKey<FormState>();
 
   final _emailTextController = TextEditingController();
@@ -92,68 +91,67 @@ class _LoginPageState extends State<LoginPage> {
                         _isProcessing
                             ? CircularProgressIndicator()
                             : Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  _focusEmail.unfocus();
-                                  _focusPassword.unfocus();
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      onPressed: () async {
+                                        _focusEmail.unfocus();
+                                        _focusPassword.unfocus();
 
-                                  if (_formKey.currentState!
-                                      .validate()) {
-                                    setState(() {
-                                      _isProcessing = true;
-                                    });
+                                        if (_formKey.currentState!.validate()) {
+                                          setState(() {
+                                            _isProcessing = true;
+                                          });
 
-                                    User? user = await FireAuth
-                                        .signInUsingEmailPassword(
-                                      email: _emailTextController.text,
-                                      password:
-                                      _passwordTextController.text,
-                                    );
+                                          User? user = await FireAuth
+                                              .signInUsingEmailPassword(
+                                            email: _emailTextController.text,
+                                            password:
+                                                _passwordTextController.text,
+                                          );
 
-                                    setState(() {
-                                      _isProcessing = false;
-                                    });
+                                          setState(() {
+                                            _isProcessing = false;
+                                          });
 
-                                    if (user != null) {
-                                      Navigator.of(context)
-                                          .pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ProfilePage(user: user),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                },
-                                child: Text(
-                                  'Sign In',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 24.0),
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegisterPage(),
+                                          if (user != null) {
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HomeScreen(),
+                                              ),
+                                            );
+                                          }
+                                        }
+                                      },
+                                      child: Text(
+                                        'Sign In',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
-                                  );
-                                },
-                                child: Text(
-                                  'Register',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
+                                  ),
+                                  SizedBox(width: 24.0),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                RegisterPage(),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Register',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
                       ],
                     ),
                   )

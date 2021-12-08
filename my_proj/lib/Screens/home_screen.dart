@@ -26,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    return Scaffold(
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -71,7 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 (_currentStep + 1) > 2 ? 2 : _currentStep + 1;
                           });
                         } else {
-                          showSnackBar(context, 'Please select an option first!');
+                          showSnackBar(
+                              context, 'Please select an option first!');
                         }
                       } else if (_currentStep == 1) {
                         if (step3Required()) {
