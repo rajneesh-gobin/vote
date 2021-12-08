@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:my_proj/models/service.dart';
 import 'package:my_proj/widgets/vote_list.dart';
 import 'package:provider/provider.dart';
 import 'package:my_proj/State/vote.dart';
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // loading votes
     Future.microtask(() {
       Provider.of<VoteState>(context, listen: false).clearState();
-      Provider.of<VoteState>(context, listen: false).loadVoteList();
+      Provider.of<VoteState>(context, listen: false).loadVoteList(context);
     });
   }
 
@@ -33,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             child: Column(
               children: <Widget>[
+                if (Provider.of<VoteState>(context, listen: true).voteList !=
+                    null)
                 Expanded(
                   child: Stepper(
                     type: StepperType.horizontal,
@@ -76,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                       } else if (_currentStep == 1) {
                         if (step3Required()) {
+                          markMyVote();
                           // Go To Result Screen
                           Navigator.pushReplacementNamed(context, '/result');
                         } else {
@@ -130,4 +134,15 @@ class _HomeScreenState extends State<HomeScreen> {
       isActive: isActive,
     );
   }
+
+  void markMyVote() {
+    final voteId =
+        Provider.of<VoteState>(context, listen: false).activeVote.voteId;
+    final option = Provider.of<VoteState>(context, listen: false)
+        .selectedOptionInActiveVote;
+
+    markVote(voteId, option);
+  }
+
 }
+

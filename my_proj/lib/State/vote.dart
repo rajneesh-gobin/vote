@@ -16,17 +16,24 @@ class VoteState with ChangeNotifier {
     _selected = value;
   }
 
-  void loadVoteList() async {
-    _voteList = getVoteList();
-    notifyListeners();
+  void loadVoteList(BuildContext context) async {
+    //_voteList = getVoteList();
+    //notifyListeners();
+    getVoteListFromFirestore(context);
   }
 
   void clearState() {
+    _voteList =null;
     _activeVote = null;
     _selectedOptionInActiveVote = null;
   }
 
   List<Vote> get voteList => _voteList;
+
+  set voteList(newValue){
+    _voteList=newValue;
+    notifyListeners();
+  }
 
   Vote get activeVote => _activeVote;
 
