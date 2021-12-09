@@ -30,12 +30,15 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isProcessing = false;
   String dropdownvalue = 'Flacq';
   var items = [
+    'BlackRiver',
     'Flacq',
-    'PortLouis',
-    'Savanne',
+    'GrandPort',
     'Moka',
     'Pamplemousses',
-    'BlackRiver'
+    'PlainesWilhems',
+    'PortLouis',
+    'RiviereduRempart',
+    'Savanne'
   ];
 
   @override
@@ -142,12 +145,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       DropdownButton<String>(
                         items: <String>[
+                          'BlackRiver',
                           'Flacq',
-                          'PortLouis',
-                          'Savanne',
+                          'GrandPort',
                           'Moka',
                           'Pamplemousses',
-                          'BlackRiver'
+                          'PlainesWilhems',
+                          'PortLouis',
+                          'RiviereduRempart',
+                          'Savanne'
                         ].map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,

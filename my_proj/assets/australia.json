@@ -4,7 +4,7 @@
     "type": "Feature",
     "properties": {
       "STATE_CODE": "1",
-      "STATE_NAME": "Riviere du Rempart"
+      "STATE_NAME": "RiviereduRempart"
     },
     "geometry": {
       "type": "Polygon",
@@ -204,7 +204,7 @@
   }, {
     "type": "Feature",
     "properties": {"STATE_CODE": "3",
-      "STATE_NAME": "Grand Port"},
+      "STATE_NAME": "GrandPort"},
     "geometry": {
       "type": "Polygon",
       "coordinates": [
@@ -787,7 +787,7 @@
   }, {
     "type": "Feature",
     "properties": {"STATE_CODE": "6",
-      "STATE_NAME": "Port Louis"},
+      "STATE_NAME": "PortLouis"},
     "geometry": {
       "type": "Polygon",
       "coordinates": [
@@ -898,7 +898,7 @@
   }, {
     "type": "Feature",
     "properties": {"STATE_CODE": "8",
-      "STATE_NAME": "Plaines Wilhems"},
+      "STATE_NAME": "PlainesWilhems"},
     "geometry": {
       "type": "Polygon",
       "coordinates": [

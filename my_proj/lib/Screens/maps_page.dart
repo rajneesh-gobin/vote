@@ -41,23 +41,36 @@ class _MyHomePageState extends State<MyHomePage> {
   late MapShapeSource _mapSource;
   @override
   void initState() {
-    print("i voteed");
+
+
     print(Provider.of<VoteState>(context, listen: false).voted);
 
-    _data = const <Model>[
-      Model('Riviere du Rempart', Color.fromRGBO(255, 215, 0, 1.0),
-          '       Riviere du\nRempart'),
-      Model('Flacq', Color.fromRGBO(72, 209, 204, 1.0), 'Flacq'),
-      Model('Grand Port', Color.fromRGBO(255, 78, 66, 1.0),
-          'Grand\Port'),
-      Model('Savanne', Color.fromRGBO(171, 56, 224, 0.75), 'Savanne'),
+
+
+    String blackriver = Provider.of<VoteState>(context, listen: false).BlackRiverNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).BlackRiverVoted.toString();
+    String Flacq = Provider.of<VoteState>(context, listen: false).FlacqNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).FlacqVoted.toString();
+    String GrandPort = Provider.of<VoteState>(context, listen: false).GrandPortNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).GrandPortVoted.toString();
+    String Moka = Provider.of<VoteState>(context, listen: false).MokaNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).MokaVoted.toString();
+    String Pamplemousses = Provider.of<VoteState>(context, listen: false).PamplemoussesNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).PamplemoussesVoted.toString();
+    String PlainesWilhems = Provider.of<VoteState>(context, listen: false).PlainesWilhemsNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).PlainesWilhemsVoted.toString();
+    String PortLouis = Provider.of<VoteState>(context, listen: false).PortLouisNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).PortLouisVoted.toString();
+    String RiviereduRempart = Provider.of<VoteState>(context, listen: false).RiviereduRempartNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).RiviereduRempartVoted.toString();
+    String Savanne = Provider.of<VoteState>(context, listen: false).SavanneNoVoted.toString()+"/"+Provider.of<VoteState>(context, listen: false).SavanneVoted.toString();
+
+    _data =  <Model>[
+      Model('RiviereduRempart', Color.fromRGBO(255, 215, 0, 1.0),
+    RiviereduRempart),
+      Model('Flacq', Color.fromRGBO(72, 209, 204, 1.0), Flacq),
+      Model('GrandPort', Color.fromRGBO(255, 78, 66, 1.0),
+    GrandPort),
+      Model('Savanne', Color.fromRGBO(171, 56, 224, 0.75), Savanne),
       Model('BlackRiver', Color.fromRGBO(126, 247, 74, 0.75),
-          'BlackRiver'),
-      Model('Port Louis', Color.fromRGBO(79, 60, 201, 0.7),
-          'Port Louis'),
-      Model('Pamplemousses', Color.fromRGBO(99, 164, 230, 1), 'Pamplemousses'),
-      Model('Plaines Wilhems', Colors.teal, 'Plaines Wilhems'),
-      Model('Moka', Colors.pink, 'Moka')
+          blackriver),
+      Model('PortLouis', Color.fromRGBO(79, 60, 201, 0.7),
+    PortLouis),
+      Model('Pamplemousses', Color.fromRGBO(99, 164, 230, 1), Pamplemousses),
+      Model('PlainesWilhems', Colors.teal, PlainesWilhems),
+      Model('Moka', Colors.pink, Moka)
     ];
 
     _mapSource = MapShapeSource.asset(

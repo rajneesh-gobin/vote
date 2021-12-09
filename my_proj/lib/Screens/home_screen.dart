@@ -32,6 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
       Provider.of<VoteState>(context, listen: false).clearState();
       Provider.of<VoteState>(context, listen: false).loadVoteList(context);
       checkemailExist(_currentUser.email,context);
+      updateNoVotePoll(context);
+      updateVotePoll(context);
     });
   }
 
@@ -174,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final option = Provider.of<VoteState>(context, listen: false)
         .selectedOptionInActiveVote;
 
-    markVote(voteId, option);
+    markVote(voteId, option,context);
   }
 
 

@@ -152,11 +152,15 @@ Vote mapFirestoreDocToVote(document) {
   return vote;
 }
 
-void markVote(String voteId, String option) async {
+void markVote(String voteId, String option, BuildContext context) async {
   // increment value
 
   FirebaseFirestore.instance.collection(kVotes).doc(voteId).update({
     option: FieldValue.increment(1),
+  });
+  String district =Provider.of<VoteState>(context, listen: false).district;
+  FirebaseFirestore.instance.collection('districtinformation').doc('bYHNVpPKmOmhEQpBl6xB').update({
+    district: FieldValue.increment(1),
   });
 }
 
@@ -182,10 +186,7 @@ void checkNicExist (String nic,BuildContext context)  {
 
     // Get data from docs and convert map to List
     final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    print("wawaa 33");
-    print(allData);
-    print(allData.length);
-    print("wawaa");
+
 
     Provider.of<VoteState>(context, listen: false).nicVerified = true;
     Provider.of<VoteState>(context, listen: false).numofnic = allData.length;
@@ -221,9 +222,6 @@ void saveUerDetails(String nic,String name,String email,String address) {
   // Retrieve updated doc from server
 
   CollectionReference users = FirebaseFirestore.instance.collection('userinformation');
-
-
-
   users.add({
     'nic': nic,
     'name': name,
@@ -284,19 +282,8 @@ void checkemailExist (String email,BuildContext context)  {
 
     // Get data from docs and convert map to List
     final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    print("wawaa 33");
     print(allData);
     print(allData.length);
-    print("wawaa");
-    print(context);
-    print("wawaa");
-    print("wawaa");
-/*
-    Future.microtask(() {
-      Provider.of<VoteState>(context, listen: false).clearState();
-      Provider.of<VoteState>(context, listen: false).loadVoteList(context);
-    });*/
-
     if(allData.length>0){
       var dJson = jsonEncode(allData[0]);
       allData.forEach((document) {
@@ -313,10 +300,9 @@ void checkemailExist (String email,BuildContext context)  {
         }
         if(key=="voted"){
           Provider.of<VoteState>(context, listen: false).voted = value;
-          print(Provider.of<VoteState>(context, listen: false).voted);
-          print('value');
-          print(value);
-          //Provider.of<VoteState>(context, listen: false).voted = value;
+        }
+        if(key=="district"){
+          Provider.of<VoteState>(context, listen: false).district = value;
         }
       });
     }
@@ -324,3 +310,133 @@ void checkemailExist (String email,BuildContext context)  {
   getNicData(context);
 
 }
+void updateVotePoll (BuildContext context) {
+  CollectionReference _collectionRef =
+  FirebaseFirestore.instance.collection('districtinformation');
+
+  Future<void> getNicData(context) async {
+    // Get docs from collection reference
+    QuerySnapshot querySnapshot = await _collectionRef.get();
+
+    // Get data from docs and convert map to List
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    print(allData);
+    print(allData.length);
+    if (allData.length > 0) {
+      var dJson = jsonEncode(allData[0]);
+      allData.forEach((document) {
+        print(document);
+      });
+      final parsedJson = jsonDecode(dJson);
+      print('${parsedJson.runtimeType} : $parsedJson');
+      //print(parsedJson.nic);
+      parsedJson.forEach((key, value) {
+        print(value);
+        print(key);
+        if (key == "BlackRiver") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .BlackRiverVoted = value;
+        }
+        if (key == "Flacq") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .FlacqVoted = value;
+        }
+        if (key == "GrandPort") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .GrandPortVoted = value;
+        }
+        if (key == "Moka") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .MokaVoted = value;
+        }
+        if (key == "Pamplemousses") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .PamplemoussesVoted = value;
+        }
+        if (key == "PlainesWilhems") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .PlainesWilhemsVoted = value;
+        }
+        if (key == "PortLouis") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .PortLouisVoted = value;
+        }
+        if (key == "RiviereduRempart") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .RiviereduRempartVoted = value;
+        }
+        if (key == "Savanne") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .SavanneVoted = value;
+        }
+      });
+    }
+  }
+  getNicData(context);
+}
+void updateNoVotePoll (BuildContext context)  {
+  CollectionReference _collectionRef =
+  FirebaseFirestore.instance.collection('userinformation');
+
+  Future<void> getNicData( context) async {
+    // Get docs from collection reference
+    QuerySnapshot querySnapshot =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'BlackRiver').get();
+    final BlackRiver = querySnapshot.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).BlackRiverNoVoted = BlackRiver.length;
+
+
+    QuerySnapshot querySnapshotFlacq =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'Flacq').get();
+    final Flacq = querySnapshotFlacq.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).FlacqNoVoted = Flacq.length;
+
+
+    QuerySnapshot querySnapshotGrandPort =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'GrandPort').get();
+    final GrandPort = querySnapshotGrandPort.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).GrandPortNoVoted = GrandPort.length;
+
+
+
+    QuerySnapshot querySnapshotMoka =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'Moka').get();
+    final Moka = querySnapshotMoka.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).MokaNoVoted = Moka.length;
+
+
+    QuerySnapshot querySnapshotPamplemousses =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'BlackRiver').get();
+    final Pamplemousses = querySnapshotPamplemousses.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).PamplemoussesNoVoted = Pamplemousses.length;
+
+
+    QuerySnapshot querySnapshotPlainesWilhems =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'BlackRiver').get();
+    final PlainesWilhems = querySnapshotPlainesWilhems.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).PlainesWilhemsNoVoted = PlainesWilhems.length;
+
+
+    QuerySnapshot querySnapshotPortLouis =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'BlackRiver').get();
+    final PortLouis = querySnapshotPortLouis.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).PortLouisNoVoted = PortLouis.length;
+
+
+    QuerySnapshot querySnapshotRiviereduRempart =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'RiviereduRempart').get();
+    final RiviereduRempart = querySnapshotRiviereduRempart.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).RiviereduRempartNoVoted = RiviereduRempart.length;
+
+
+    QuerySnapshot querySnapshotSavanne =  await _collectionRef.where("voted", isEqualTo: false).where("district", isEqualTo: 'Savanne').get();
+    final Savanne = querySnapshotSavanne.docs.map((doc) => doc.data()).toList();
+    Provider.of<VoteState>(context, listen: false).SavanneNoVoted = Savanne.length;
+
+  };
+  getNicData(context);
+  }
+
+
+
