@@ -4,8 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:my_proj/Screens/home_screen.dart';
 import 'package:my_proj/Screens/profile_page.dart';
 import 'package:my_proj/Screens/register_page.dart';
+import 'package:my_proj/State/vote.dart';
+import 'package:my_proj/models/service.dart';
 import 'package:my_proj/utils/fire_auth.dart';
 import 'package:my_proj/utils/validator.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -117,11 +120,13 @@ class _LoginPageState extends State<LoginPage> {
                                           });
 
                                           if (user != null) {
+                                            print("user exists");
+
                                             Navigator.of(context)
                                                 .pushReplacement(
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    HomeScreen(),
+                                                    HomeScreen(user: user),
                                               ),
                                             );
                                           }
@@ -137,6 +142,10 @@ class _LoginPageState extends State<LoginPage> {
                                   Expanded(
                                     child: ElevatedButton(
                                       onPressed: () {
+                                        Provider.of<VoteState>(context,
+                                            listen: false)
+                                            .nicVerified =
+                                            false;
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
                                             builder: (context) =>

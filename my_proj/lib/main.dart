@@ -8,6 +8,8 @@ import 'package:my_proj/State/vote.dart';
 import 'package:provider/provider.dart';
 import 'package:my_proj/screens/login_pages.dart';
 
+import 'Screens/maps_page.dart';
+
 void main() => runApp(VoteApp());
 
 class VoteApp extends StatelessWidget {
@@ -24,13 +26,19 @@ class VoteApp extends StatelessWidget {
         initialRoute: "/login",
         routes: {
           "/": (context) => Scaffold(
-                body: LaunchScreen(),
+                body: LoginPage(),
               ),
           '/home': (context) => Scaffold(
                 appBar: AppBar(
                   title: const Text(kAppName),
                 ),
-                body: HomeScreen(),
+                //body: HomeScreen(),
+              ),
+          '/map': (context) => Scaffold(
+                appBar: AppBar(
+                  title: const Text(kAppName),
+                ),
+                body: MapsApp(),
               ),
           '/result': (context) => Scaffold(
                 appBar: AppBar(

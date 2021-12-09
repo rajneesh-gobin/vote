@@ -11,6 +11,17 @@ class Validator {
 
     return null;
   }
+  static String? validateNic({required String? name}) {
+    if (name == null) {
+      return null;
+    }
+
+    if (name.isEmpty) {
+      return 'Nic can\'t be empty';
+    }
+
+    return null;
+  }
 
   static String? validateEmail({required String? email}) {
     if (email == null) {

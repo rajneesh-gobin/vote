@@ -11,10 +11,10 @@ class VoteWidget extends StatelessWidget {
     List<String> options = List<String>();
     Map<String, String> Logo = {};
 
-    for (Map<String, String> option in activeVote.options) {
+    for (Map<String, int> option in activeVote.options) {
       option.forEach((title, value) {
         options.add(title);
-        Logo[title] = option[title];
+        //Logo[title] = option[title];
         //print(option[title]);
       });
     }
@@ -80,7 +80,8 @@ class VoteWidget extends StatelessWidget {
                               color: Colors.black,
                               image: DecorationImage(
                                 image: AssetImage(
-                                    "assets/images/" + Logo[option] + ".jpg"),
+                                    //"assets/images/" + Logo[option] + ".jpg"),
+                                    "assets/images/pikeur.jpg"),
                                 fit: BoxFit.fill,
                               ),
                               shape: BoxShape.circle,

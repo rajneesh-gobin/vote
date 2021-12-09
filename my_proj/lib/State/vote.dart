@@ -9,6 +9,31 @@ class VoteState with ChangeNotifier {
   Vote _activeVote;
   String _selectedOptionInActiveVote;
   bool _selected = false;
+  bool _voted = false;
+
+  bool get voted => _voted;
+
+  set voted(bool value) {
+    _voted = value;
+  }
+
+  int _numofnic=0;
+  String _nic ="";
+
+  String get nic => _nic;
+
+  set nic(String value) {
+    _nic = value;
+  }
+
+  int get numofnic => _numofnic;
+
+  set numofnic(int value) {
+    _numofnic = value;
+  }
+
+  bool _nicVerified=false;
+
 
   bool get selected => _selected;
 
@@ -47,5 +72,11 @@ class VoteState with ChangeNotifier {
   void set selectedOptionInActiveVote(String newValue) {
     _selectedOptionInActiveVote = newValue;
     notifyListeners();
+  }
+
+  bool get nicVerified => _nicVerified;
+
+  set nicVerified(bool value) {
+    _nicVerified = value;
   }
 }
