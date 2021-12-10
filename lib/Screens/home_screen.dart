@@ -7,6 +7,8 @@ import 'package:my_proj/State/vote.dart';
 import 'package:my_proj/models/vote.dart';
 import 'package:my_proj/widgets/vote.dart';
 
+import '../constants.dart';
+
 class HomeScreen extends StatefulWidget {
   final User user;
 
@@ -31,12 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
       checkemailExist(_currentUser.email, context);
       updateNoVotePoll(context);
       updateVotePoll(context);
+      Gettotalperdistrict(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(kAppName),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -104,17 +110,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => LaunchScreen(),
+                    //   ),
+                    // );
+                    Navigator.pushNamed(context, '/map');
+                    //Navigator.pop(context);
+                  },
+                  child: Text("Stats"),
+                ),/*
                 IconButton(
                   icon: const Icon(Icons.map_outlined),
                   iconSize: 70,
-                  tooltip: 'Increase volume by 10',
                   onPressed: () {
                     Navigator.pushNamed(context, '/map');
                     setState(() {
                       //_volume += 10;
                     });
                   },
-                ),
+                ),*/
               ],
             ),
           ),

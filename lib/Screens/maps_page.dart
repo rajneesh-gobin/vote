@@ -42,74 +42,111 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     print(Provider.of<VoteState>(context, listen: false).voted);
 
-    String blackriver = Provider.of<VoteState>(context, listen: false)
+    String blackriver = "Registered:"+Provider.of<VoteState>(context, listen: false)
             .BlackRiverNoVoted
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false)
             .BlackRiverVoted
             .toString();
-    String Flacq = Provider.of<VoteState>(context, listen: false)
-            .FlacqNoVoted
+
+    String BlackRiverTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .BlackRiverTotal
+        .toString();
+
+    String Flacq = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .FlacqNoVoted+Provider.of<VoteState>(context, listen: false).FlacqVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false).FlacqVoted.toString();
-    String GrandPort = Provider.of<VoteState>(context, listen: false)
-            .GrandPortNoVoted
+
+    String FlacqTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .FlacqTotal
+        .toString();
+
+    String GrandPort = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .GrandPortNoVoted+Provider.of<VoteState>(context, listen: false)
+        .GrandPortVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false)
             .GrandPortVoted
             .toString();
-    String Moka =
-        Provider.of<VoteState>(context, listen: false).MokaNoVoted.toString() +
-            "/" +
+    String GrandPortTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .GrandPortTotal
+        .toString();
+    String Moka ="Registered:"+(
+        Provider.of<VoteState>(context, listen: false).MokaNoVoted+Provider.of<VoteState>(context, listen: false).MokaVoted).toString() +
+            "\nVoted:" +
             Provider.of<VoteState>(context, listen: false).MokaVoted.toString();
-    String Pamplemousses = Provider.of<VoteState>(context, listen: false)
-            .PamplemoussesNoVoted
+    String MokaTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .MokaTotal
+        .toString();
+    String Pamplemousses = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .PamplemoussesNoVoted+Provider.of<VoteState>(context, listen: false)
+        .PamplemoussesVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false)
             .PamplemoussesVoted
             .toString();
-    String PlainesWilhems = Provider.of<VoteState>(context, listen: false)
-            .PlainesWilhemsNoVoted
+    String PamplemoussesTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .PamplemoussesTotal
+        .toString();
+    String PlainesWilhems = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .PlainesWilhemsNoVoted+ Provider.of<VoteState>(context, listen: false)
+        .PlainesWilhemsVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false)
             .PlainesWilhemsVoted
             .toString();
-    String PortLouis = Provider.of<VoteState>(context, listen: false)
-            .PortLouisNoVoted
+    String PlainesWilhemsTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .PlainesWilhemsTotal
+        .toString();
+    String PortLouis = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .PortLouisNoVoted+Provider.of<VoteState>(context, listen: false)
+        .PortLouisVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false)
             .PortLouisVoted
             .toString();
-    String RiviereduRempart = Provider.of<VoteState>(context, listen: false)
-            .RiviereduRempartNoVoted
+    String PortLouisTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .PortLouisTotal
+        .toString();
+    String RiviereduRempart = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .RiviereduRempartNoVoted+  Provider.of<VoteState>(context, listen: false)
+        .RiviereduRempartVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false)
             .RiviereduRempartVoted
             .toString();
-    String Savanne = Provider.of<VoteState>(context, listen: false)
-            .SavanneNoVoted
+    String RiviereduRempartTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .RiviereduRempartTotal
+        .toString();
+    String Savanne = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+            .SavanneNoVoted+Provider.of<VoteState>(context, listen: false).SavanneVoted)
             .toString() +
-        "/" +
+        "\nVoted:" +
         Provider.of<VoteState>(context, listen: false).SavanneVoted.toString();
+    String SavanneTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+        .SavanneTotal
+        .toString();
+
 
     _data = <Model>[
       Model('RiviereduRempart', Color.fromRGBO(255, 215, 0, 1.0),
-          RiviereduRempart),
-      Model('Flacq', Color.fromRGBO(72, 209, 204, 1.0), Flacq),
-      Model('GrandPort', Color.fromRGBO(255, 78, 66, 1.0), GrandPort),
-      Model('Savanne', Color.fromRGBO(171, 56, 224, 0.75), Savanne),
-      Model('BlackRiver', Color.fromRGBO(126, 247, 74, 0.75), blackriver),
-      Model('PortLouis', Color.fromRGBO(79, 60, 201, 0.7), PortLouis),
-      Model('Pamplemousses', Color.fromRGBO(99, 164, 230, 1), Pamplemousses),
-      Model('PlainesWilhems', Colors.teal, PlainesWilhems),
-      Model('Moka', Colors.pink, Moka)
+          RiviereduRempart,RiviereduRempartTotal),
+      Model('Flacq', Color.fromRGBO(72, 209, 204, 1.0), Flacq,FlacqTotal),
+      Model('GrandPort', Color.fromRGBO(255, 78, 66, 1.0), GrandPort, GrandPortTotal),
+      Model('Savanne', Color.fromRGBO(171, 56, 224, 0.75), Savanne,SavanneTotal),
+      Model('BlackRiver', Color.fromRGBO(126, 247, 74, 0.75), blackriver, BlackRiverTotal),
+      Model('PortLouis', Color.fromRGBO(79, 60, 201, 0.7), PortLouis, PortLouisTotal),
+      Model('Pamplemousses', Color.fromRGBO(99, 164, 230, 1), Pamplemousses, PamplemoussesTotal),
+      Model('PlainesWilhems', Colors.teal, PlainesWilhems, PlainesWilhemsTotal),
+      Model('Moka', Colors.pink, Moka, MokaTotal)
     ];
 
     _mapSource = MapShapeSource.asset(
@@ -147,7 +184,7 @@ class _MapPageState extends State<MapPage> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          _data[index].stateCode,
+                          _data[index].totalVoters,
                           style: const TextStyle(color: Colors.white),
                         ),
                       );
@@ -184,15 +221,13 @@ class _MapPageState extends State<MapPage> {
 
 /// Collection of Australia state code data.
 class Model {
-  /// Initialize the instance of the [Model] class.
-  const Model(this.state, this.color, this.stateCode);
+  const Model(this.state, this.color, this.stateCode,this.totalVoters);
 
-  /// Represents the Australia state name.
   final String state;
 
-  /// Represents the Australia state color.
   final Color color;
 
-  /// Represents the Australia state code.
   final String stateCode;
+
+  final String totalVoters;
 }

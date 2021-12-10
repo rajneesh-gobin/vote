@@ -13,7 +13,12 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     retrieveActiveVoteData(context);
-    return Container(
+    return Scaffold(
+      body: Column(
+          children: [
+
+     Container(
+
       padding: EdgeInsets.all(20),
       width: MediaQuery
           .of(context)
@@ -24,7 +29,19 @@ class ResultScreen extends StatelessWidget {
           .size
           .height / 2,
       child: createChart(context),
-    );
+    ) , ElevatedButton(
+              onPressed: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => LaunchScreen(),
+                //   ),
+                // );
+                Navigator.pushNamed(context, '/map');
+                //Navigator.pop(context);
+              },
+              child: Text("View Statistics"),
+            ),]));
   }
 
   Widget createChart(BuildContext context) {

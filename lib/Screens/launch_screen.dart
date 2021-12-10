@@ -31,7 +31,6 @@ class LaunchScreen extends StatelessWidget {
             size: 300,
             onPressed: () {
               signIn(context);
-              print("aaa");
 //          setState(() {
 //            _isNeedHelp = true;
 //          });

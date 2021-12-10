@@ -383,6 +383,81 @@ void updateVotePoll (BuildContext context) {
   }
   getNicData(context);
 }
+
+
+void Gettotalperdistrict (BuildContext context) {
+  CollectionReference _collectionRef =
+  FirebaseFirestore.instance.collection('totalvoters');
+
+  Future<void> getNicData(context) async {
+    // Get docs from collection reference
+    QuerySnapshot querySnapshot = await _collectionRef.get();
+
+    // Get data from docs and convert map to List
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    print(allData);
+    print(allData.length);
+    if (allData.length > 0) {
+      var dJson = jsonEncode(allData[0]);
+      allData.forEach((document) {
+        print(document);
+      });
+      final parsedJson = jsonDecode(dJson);
+      print('${parsedJson.runtimeType} : $parsedJson');
+      //print(parsedJson.nic);
+      parsedJson.forEach((key, value) {
+        print(value);
+        print(key);
+        if (key == "BlackRiver") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .BlackRiverTotal = value;
+        }
+        if (key == "Flacq") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .FlacqTotal = value;
+        }
+        if (key == "GrandPort") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .GrandPortTotal = value;
+        }
+        if (key == "Moka") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .MokaTotal = value;
+        }
+        if (key == "Pamplemousses") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .PamplemoussesTotal = value;
+        }
+        if (key == "PlainesWilhems") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .PlainesWilhemsTotal = value;
+        }
+        if (key == "PortLouis") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .PortLouisTotal = value;
+        }
+        if (key == "RiviereduRempart") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .RiviereduRempartTotal = value;
+        }
+        if (key == "Savanne") {
+          Provider
+              .of<VoteState>(context, listen: false)
+              .SavanneTotal = value;
+        }
+      });
+    }
+  }
+  getNicData(context);
+}
 void updateNoVotePoll (BuildContext context)  {
   CollectionReference _collectionRef =
   FirebaseFirestore.instance.collection('userinformation');

@@ -37,6 +37,24 @@ class VoteState with ChangeNotifier {
   int _RiviereduRempartNoVoted;
   int _SavanneNoVoted;
 
+
+  int _BlackRiverTotal;
+  int _FlacqTotal;
+  int _GrandPortTotal;
+
+  int get BlackRiverTotal => _BlackRiverTotal;
+
+  set BlackRiverTotal(int value) {
+    _BlackRiverTotal = value;
+  }
+
+  int _MokaTotal;
+  int _PamplemoussesTotal;
+  int _PlainesWilhemsTotal;
+  int _PortLouisTotal;
+  int _RiviereduRempartTotal;
+  int _SavanneTotal;
+
   String get district => _district;
 
   set district(String value) {
@@ -215,5 +233,53 @@ class VoteState with ChangeNotifier {
 
   set SavanneNoVoted(int value) {
     _SavanneNoVoted = value;
+  }
+
+  int get FlacqTotal => _FlacqTotal;
+
+  set FlacqTotal(int value) {
+    _FlacqTotal = value;
+  }
+
+  int get GrandPortTotal => _GrandPortTotal;
+
+  set GrandPortTotal(int value) {
+    _GrandPortTotal = value;
+  }
+
+  int get MokaTotal => _MokaTotal;
+
+  set MokaTotal(int value) {
+    _MokaTotal = value;
+  }
+
+  int get PamplemoussesTotal => _PamplemoussesTotal;
+
+  set PamplemoussesTotal(int value) {
+    _PamplemoussesTotal = value;
+  }
+
+  int get PlainesWilhemsTotal => _PlainesWilhemsTotal;
+
+  set PlainesWilhemsTotal(int value) {
+    _PlainesWilhemsTotal = value;
+  }
+
+  int get PortLouisTotal => _PortLouisTotal;
+
+  set PortLouisTotal(int value) {
+    _PortLouisTotal = value;
+  }
+
+  int get RiviereduRempartTotal => _RiviereduRempartTotal;
+
+  set RiviereduRempartTotal(int value) {
+    _RiviereduRempartTotal = value;
+  }
+
+  int get SavanneTotal => _SavanneTotal;
+
+  set SavanneTotal(int value) {
+    _SavanneTotal = value;
   }
 }

@@ -1,1 +1,1 @@
-const kAppName='Vote Application';
+const kAppName='Citizen E Vote App';

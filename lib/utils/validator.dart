@@ -15,9 +15,14 @@ class Validator {
     if (name == null) {
       return null;
     }
-
+    RegExp nicRegExp = RegExp(
+        r"^[a-zA-Z]{1}[0-9]{12}[a-zA-Z0-9]{1}$");
     if (name.isEmpty) {
       return 'Nic can\'t be empty';
+    }else if (name.length != 14) {
+      return 'Incorrect NIC';
+    }else if (!nicRegExp.hasMatch(name)) {
+      return 'Enter a correct NIC';
     }
 
     return null;

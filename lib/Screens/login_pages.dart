@@ -122,13 +122,22 @@ class _LoginPageState extends State<LoginPage> {
                                           if (user != null) {
                                             print("user exists");
 
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HomeScreen(user: user),
-                                              ),
-                                            );
+                                            if(user.emailVerified==true) {
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomeScreen(user: user),
+                                                ),
+                                              );
+                                            }else{
+
+                                              _showDialog("Your email has not been verified please go in your mailbox and click verify");
+
+                                            }
+                                          }else{
+                                            _showDialog("verify the credentials");
+
                                           }
                                         }
                                       },
@@ -173,6 +182,30 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       ),
+    );
+  }
+
+  void _showDialog(msg) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Authentication"),
+          content: new Text(msg),
+          backgroundColor: Colors.blue,
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

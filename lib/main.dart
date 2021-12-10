@@ -44,7 +44,7 @@ class VoteApp extends StatelessWidget {
                 appBar: AppBar(
                   title: const Text('Result'),
                   leading: IconButton(
-                    icon: const Icon(Icons.home),
+                    icon: const Icon(Icons.logout),
                     color: Colors.white,
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/home');
