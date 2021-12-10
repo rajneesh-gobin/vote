@@ -51,7 +51,7 @@ class VoteApp extends StatelessWidget {
           '/result': (context) => Scaffold(
                 appBar: AppBar(
                   title: const Text('Result'),
-      backgroundColor:Colors.orange,
+                  backgroundColor:Colors.orange,
                   leading: IconButton(
                     icon: const Icon(Icons.logout),
                     color: Colors.white,

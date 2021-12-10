@@ -58,20 +58,7 @@ const String docID = '84O1gxRdv19ID4ThjdgX';
 void getVoteListFromFirestore(BuildContext context) async {
   List<Vote> voteList = List<Vote>();
 
-/*
-  CollectionReference _collectionRef =
-  FirebaseFirestore.instance.collection(kVotes);
 
-
-    // Get docs from collection reference
-    QuerySnapshot querySnapshot = await _collectionRef.get();
-
-
-    // Get data from docs and convert map to List
-    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    voteList.add(mapFirestoreDocToVote(allData));
-
-    print(allData);*/
 
   CollectionReference _collectionRef =
       FirebaseFirestore.instance.collection(kVotes);
@@ -91,48 +78,10 @@ void getVoteListFromFirestore(BuildContext context) async {
     });
     Provider.of<VoteState>(context, listen: false).voteList = voteList;
   }
-/*
-  FirebaseFirestore.instance.collection(kVotes).get().then((snapshot) {
 
-    List<Vote> voteList = List<Vote>();
-
-    snapshot.docs.forEach((DocumentSnapshot document) {
-      voteList.add(mapFirestoreDocToVote(document));
-    });
-
-    Provider.of<VoteState>(context, listen: false).voteList = voteList;
-  });
-
-  */
 
   getData();
-/*
-  FirebaseFirestore.instance
-      .collection(kVotes)
-      .doc()
-      .get()
-      .then((DocumentSnapshot documentSnapshot) {
-    if (documentSnapshot.exists) {
-      voteList.add(mapFirestoreDocToVote(documentSnapshot));
-      Provider.of<VoteState>(context, listen: false).voteList = voteList;
 
-      print('Document data: ${documentSnapshot.data()}');
-    } else {
-      print('Document does not exist on the database');
-    }
-  });
-
-
-  Firestore.instance.collection(kVotes).getDocuments().then((snapshot) {
-    List<Vote> voteList = List<Vote>();
-
-    snapshot.documents.forEach((DocumentSnapshot document) {
-      voteList.add(mapFirestoreDocToVote(document));
-    });
-
-    Provider.of<VoteState>(context, listen: false).voteList = voteList;
-  });
-  */
 }
 
 Vote mapFirestoreDocToVote(document) {
@@ -158,22 +107,56 @@ void markVote(String voteId, String option, BuildContext context) async {
   FirebaseFirestore.instance.collection(kVotes).doc(voteId).update({
     option: FieldValue.increment(1),
   });
-  String district =Provider.of<VoteState>(context, listen: false).district;
-  FirebaseFirestore.instance.collection('districtinformation').doc('bYHNVpPKmOmhEQpBl6xB').update({
+  String district = Provider
+      .of<VoteState>(context, listen: false)
+      .district;
+  FirebaseFirestore.instance.collection('districtinformation').doc(
+      'bYHNVpPKmOmhEQpBl6xB').update({
     district: FieldValue.increment(1),
   });
+
+
+  CollectionReference _collectionRef =
+  FirebaseFirestore.instance.collection('userinformation');
+  String nic = Provider
+      .of<VoteState>(context, listen: false)
+      .nic;
+
+  QuerySnapshot querySnapshot = await _collectionRef.where(
+      "nic", isEqualTo: nic).get().then((snapshot) {
+
+    print('querySnapshot.toString()');
+    print(snapshot);
+    final allData = snapshot.docs.map((doc) => doc.id).toList();
+    print(allData);
+    print(allData[0]);
+
+    if(allData.length>0)
+      FirebaseFirestore.instance.collection('userinformation').doc(
+          allData[0]).update({
+        'voted': true,
+      });
+
+
+  }
+  );
+
+
+
+
+
+  FirebaseFirestore.instance.collection('districtinformation').doc(
+      'bYHNVpPKmOmhEQpBl6xB').update({
+    district: FieldValue.increment(1),
+  });
+
 }
 
 void retrieveMarkedVoteFromFirestore({String voteId, BuildContext context}) {
   // Retrieve updated doc from server
-  FirebaseFirestore.instance
-      .collection(kVotes)
-      .doc(voteId)
-      .get()
-      .then((document) {
-    Provider.of<VoteState>(context, listen: false).activeVote =
-        mapFirestoreDocToVote(document);
-  });
+  getVoteListFromFirestore(context);
+
+
 }
 
 void checkNicExist (String nic,BuildContext context)  {
@@ -207,8 +190,7 @@ void checkNicExist (String nic,BuildContext context)  {
         if(key=="voted"){
           Provider.of<VoteState>(context, listen: false).voted = value;
           print(Provider.of<VoteState>(context, listen: false).voted);
-          print('value');
-          print(value);
+
           //Provider.of<VoteState>(context, listen: false).voted = value;
         }
       });

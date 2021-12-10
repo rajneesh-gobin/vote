@@ -42,96 +42,96 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     print(Provider.of<VoteState>(context, listen: false).voted);
 
-    String blackriver = "Registered:"+Provider.of<VoteState>(context, listen: false)
+    String blackriver = "Registered: "+Provider.of<VoteState>(context, listen: false)
             .BlackRiverNoVoted
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false)
             .BlackRiverVoted
             .toString();
 
-    String BlackRiverTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String BlackRiverTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .BlackRiverTotal
         .toString();
 
-    String Flacq = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String Flacq = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .FlacqNoVoted+Provider.of<VoteState>(context, listen: false).FlacqVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false).FlacqVoted.toString();
 
-    String FlacqTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String FlacqTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .FlacqTotal
         .toString();
 
-    String GrandPort = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String GrandPort = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .GrandPortNoVoted+Provider.of<VoteState>(context, listen: false)
         .GrandPortVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false)
             .GrandPortVoted
             .toString();
-    String GrandPortTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String GrandPortTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .GrandPortTotal
         .toString();
-    String Moka ="Registered:"+(
+    String Moka ="Registered: "+(
         Provider.of<VoteState>(context, listen: false).MokaNoVoted+Provider.of<VoteState>(context, listen: false).MokaVoted).toString() +
             "\nVoted:" +
             Provider.of<VoteState>(context, listen: false).MokaVoted.toString();
-    String MokaTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String MokaTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .MokaTotal
         .toString();
-    String Pamplemousses = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String Pamplemousses = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .PamplemoussesNoVoted+Provider.of<VoteState>(context, listen: false)
         .PamplemoussesVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false)
             .PamplemoussesVoted
             .toString();
-    String PamplemoussesTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String PamplemoussesTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .PamplemoussesTotal
         .toString();
-    String PlainesWilhems = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String PlainesWilhems = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .PlainesWilhemsNoVoted+ Provider.of<VoteState>(context, listen: false)
         .PlainesWilhemsVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false)
             .PlainesWilhemsVoted
             .toString();
-    String PlainesWilhemsTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String PlainesWilhemsTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .PlainesWilhemsTotal
         .toString();
-    String PortLouis = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String PortLouis = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .PortLouisNoVoted+Provider.of<VoteState>(context, listen: false)
         .PortLouisVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false)
             .PortLouisVoted
             .toString();
-    String PortLouisTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String PortLouisTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .PortLouisTotal
         .toString();
-    String RiviereduRempart = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String RiviereduRempart = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .RiviereduRempartNoVoted+  Provider.of<VoteState>(context, listen: false)
         .RiviereduRempartVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false)
             .RiviereduRempartVoted
             .toString();
-    String RiviereduRempartTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String RiviereduRempartTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .RiviereduRempartTotal
         .toString();
-    String Savanne = "Registered:"+(Provider.of<VoteState>(context, listen: false)
+    String Savanne = "Registered: "+(Provider.of<VoteState>(context, listen: false)
             .SavanneNoVoted+Provider.of<VoteState>(context, listen: false).SavanneVoted)
             .toString() +
-        "\nVoted:" +
+        "\nVoted: " +
         Provider.of<VoteState>(context, listen: false).SavanneVoted.toString();
-    String SavanneTotal="Total:"+Provider.of<VoteState>(context, listen: false)
+    String SavanneTotal="Total: "+Provider.of<VoteState>(context, listen: false)
         .SavanneTotal
         .toString();
 
