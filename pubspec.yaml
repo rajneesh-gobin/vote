@@ -42,6 +42,7 @@ dependencies:
   charts_flutter: ^0.12.0
   cloud_firestore: ^3.1.3
   syncfusion_flutter_maps: ^19.3.57-beta
+  google_fonts: ^2.1.0
   #countries_world_map: ^0.0.6
 dev_dependencies:
   flutter_test:

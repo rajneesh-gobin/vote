@@ -9,6 +9,8 @@ import 'package:my_proj/models/service.dart';
 import 'package:my_proj/utils/fire_auth.dart';
 import 'package:my_proj/utils/validator.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -39,6 +41,8 @@ class _LoginPageState extends State<LoginPage> {
       body: FutureBuilder(
         future: _initializeFirebase(),
         builder: (context, snapshot) {
+          final TextStyle headline4 = Theme.of(context).textTheme.headline3!;
+
           if (snapshot.connectionState == ConnectionState.done) {
             return Padding(
               padding: const EdgeInsets.only(left: 24.0, right: 24.0),
@@ -49,7 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(bottom: 24.0),
                     child: Text(
                       'Login',
-                      style: Theme.of(context).textTheme.headline3,
+                      style: GoogleFonts.oswald(textStyle: headline4),
+
+                      //style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   Form(

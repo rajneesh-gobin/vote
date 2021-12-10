@@ -5,6 +5,7 @@ import 'package:my_proj/Screens/launch_screen.dart';
 import 'package:my_proj/Screens/result_screen.dart';
 import 'package:my_proj/constants.dart';
 import 'package:my_proj/State/vote.dart';
+import 'package:my_proj/themes/my_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:my_proj/screens/login_pages.dart';
 
@@ -24,6 +25,9 @@ class VoteApp extends StatelessWidget {
       ],
       child: MaterialApp(
         initialRoute: "/login",
+        themeMode: ThemeMode.system,
+        theme:MyTheme.lightTheme(context),
+        darkTheme:MyTheme.darkTheme(context),
         routes: {
           "/": (context) => Scaffold(
                 body: LoginPage(),
