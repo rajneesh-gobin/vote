@@ -57,6 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Register'),
+            backgroundColor:Colors.orange
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
@@ -176,6 +177,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               children: [
                                 Expanded(
                                   child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                                    ),
                                     onPressed: () async {
                                       print(Provider.of<VoteState>(context,
                                               listen: false)

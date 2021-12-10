@@ -33,7 +33,7 @@ String activeVoteId=Provider.of<VoteState>(context).activeVote?.voteId ?? '';
                       voteState.activeVote = vote;
                     },
                 ),
-                color: activeVoteId == vote.voteId ? Colors.red[200] : alternateColor(),
+                color: activeVoteId == vote.voteId ? Colors.amber : alternateColor(),
               ),
           ],
         );
@@ -44,10 +44,10 @@ String activeVoteId=Provider.of<VoteState>(context).activeVote?.voteId ?? '';
   Function getAlternate({int start = 0}) {
     int indexNum = start;
     Color getColor() {
-      Color color = Colors.teal[100];
+      Color color = Colors.deepOrangeAccent;
 
       if (indexNum % 2 == 0) {
-        color = Colors.blueAccent[100];
+        color = Colors.orangeAccent;
       }
 
       ++indexNum;

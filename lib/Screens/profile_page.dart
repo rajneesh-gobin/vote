@@ -30,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor:Colors.orange,
         title: Text('Profile'),
       ),
       body: Center(
@@ -68,6 +69,9 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                  ),
                   onPressed: () async {
                     setState(() {
                       _isSendingVerification = true;
@@ -114,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
               },
               child: Text('Sign out'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.red,
+                primary: Colors.orangeAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(kAppName),
+          backgroundColor:Colors.orange
       ),
       body: Center(
         child: Padding(
@@ -111,6 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                  ),
                   onPressed: () {
                     // Navigator.push(
                     //   context,

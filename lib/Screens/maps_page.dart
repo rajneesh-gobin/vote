@@ -200,7 +200,11 @@ class _MapPageState extends State<MapPage> {
               ),
             ),
           ),
+          SizedBox(height: 12.0),
           ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.orangeAccent),
+            ),
             onPressed: () {
               // Navigator.push(
               //   context,

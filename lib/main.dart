@@ -24,6 +24,8 @@ class VoteApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+
         initialRoute: "/login",
         themeMode: ThemeMode.system,
         theme:MyTheme.lightTheme(context),
@@ -35,32 +37,34 @@ class VoteApp extends StatelessWidget {
           '/home': (context) => Scaffold(
                 appBar: AppBar(
                   title: const Text(kAppName),
+                  backgroundColor:Colors.orange
                 ),
                 //body: HomeScreen(),
               ),
           '/map': (context) => Scaffold(
                 appBar: AppBar(
                   title: const Text(kAppName),
+                    backgroundColor:Colors.orange
                 ),
                 body: MapPage(),
               ),
           '/result': (context) => Scaffold(
                 appBar: AppBar(
                   title: const Text('Result'),
+      backgroundColor:Colors.orange,
                   leading: IconButton(
                     icon: const Icon(Icons.logout),
                     color: Colors.white,
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/home');
+                      Navigator.pushReplacementNamed(context, '/');
                     },
                   ),
                 ),
                 body: ResultScreen(),
               ),
-          '/login': (context) => Scaffold(
-                appBar: AppBar(
+          '/login': (context) => Scaffold(/*                appBar: AppBar(
                   title: const Text(kAppName),
-                ),
+                ),*/
                 body: LoginPage(),
               )
         },
