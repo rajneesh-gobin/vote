@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_proj/models/service.dart';
@@ -14,13 +13,11 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({required this.user});
   @override
   _HomeScreenState createState() => _HomeScreenState();
-
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentStep = 0;
   late User _currentUser;
-
 
   @override
   void initState() {
@@ -31,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.microtask(() {
       Provider.of<VoteState>(context, listen: false).clearState();
       Provider.of<VoteState>(context, listen: false).loadVoteList(context);
-      checkemailExist(_currentUser.email,context);
+      checkemailExist(_currentUser.email, context);
       updateNoVotePoll(context);
       updateVotePoll(context);
     });
@@ -46,80 +43,74 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             child: Column(
               children: <Widget>[
-
                 if (Provider.of<VoteState>(context, listen: true).voteList !=
                     null)
-                Expanded(
-                  child: Stepper(
-                    type: StepperType.horizontal,
-                    currentStep: _currentStep,
-                    steps: [
-                      getStep(
-                        title: 'Choose',
-                        child: VoteListWidget(),
-                        isActive: true,
-                      ),
-                      getStep(
-                        title: 'Vote',
-                        child: VoteWidget(),
-                        isActive: _currentStep >= 1 ? true : false,
-                      ),
-                    ],
-                    onStepCancel: () {
-                      if (_currentStep <= 0) {
-                        Provider.of<VoteState>(context, listen: false)
-                            .activeVote = null;
-                      } else if (_currentStep <= 1) {
-                        Provider.of<VoteState>(context, listen: false)
-                            .selectedOptionInActiveVote = null;
-                      }
+                  Expanded(
+                    child: Stepper(
+                      type: StepperType.horizontal,
+                      currentStep: _currentStep,
+                      steps: [
+                        getStep(
+                          title: 'Choose',
+                          child: VoteListWidget(),
+                          isActive: true,
+                        ),
+                        getStep(
+                          title: 'Vote',
+                          child: VoteWidget(),
+                          isActive: _currentStep >= 1 ? true : false,
+                        ),
+                      ],
+                      onStepCancel: () {
+                        if (_currentStep <= 0) {
+                          Provider.of<VoteState>(context, listen: false)
+                              .activeVote = null;
+                        } else if (_currentStep <= 1) {
+                          Provider.of<VoteState>(context, listen: false)
+                              .selectedOptionInActiveVote = null;
+                        }
 
-                      setState(() {
-                        _currentStep =
-                            (_currentStep - 1) < 0 ? 0 : _currentStep - 1;
-                      });
-                    },
-                    onStepContinue: () {
-                      if (_currentStep == 0) {
-
-                        if( Provider.of<VoteState>(context, listen: false)
-                            .voted ==true){
-                          _showDialog(
-                              'you already voted');
-
-                        }else {
-                          if (step2Required()) {
-                            setState(() {
-                              _currentStep =
-                              (_currentStep + 1) > 2 ? 2 : _currentStep + 1;
-                            });
+                        setState(() {
+                          _currentStep =
+                              (_currentStep - 1) < 0 ? 0 : _currentStep - 1;
+                        });
+                      },
+                      onStepContinue: () {
+                        if (_currentStep == 0) {
+                          if (Provider.of<VoteState>(context, listen: false)
+                                  .voted ==
+                              true) {
+                            _showDialog('you already voted');
                           } else {
-                            _showDialog(
-                                'Please select an option first!');
+                            if (step2Required()) {
+                              setState(() {
+                                _currentStep = (_currentStep + 1) > 2
+                                    ? 2
+                                    : _currentStep + 1;
+                              });
+                            } else {
+                              _showDialog('Please select an option first!');
+                            }
+                          }
+                        } else if (_currentStep == 1) {
+                          if (step3Required()) {
+                            markMyVote();
+                            // Go To Result Screen
+                            Navigator.pushReplacementNamed(context, '/result');
+                          } else {
+                            _showDialog('Please mark your vote!');
                           }
                         }
-
-
-                      } else if (_currentStep == 1) {
-                        if (step3Required()) {
-                          markMyVote();
-                          // Go To Result Screen
-                          Navigator.pushReplacementNamed(context, '/result');
-                        } else {
-                          _showDialog( 'Please mark your vote!');
-                        }
-                      }
-                    },
+                      },
+                    ),
                   ),
-                ),
                 IconButton(
-                  icon: const Icon(Icons.map_outlined ),
-                  iconSize : 70,
+                  icon: const Icon(Icons.map_outlined),
+                  iconSize: 70,
                   tooltip: 'Increase volume by 10',
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/map');
+                    Navigator.pushNamed(context, '/map');
                     setState(() {
-
                       //_volume += 10;
                     });
                   },
@@ -176,9 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final option = Provider.of<VoteState>(context, listen: false)
         .selectedOptionInActiveVote;
 
-    markVote(voteId, option,context);
+    markVote(voteId, option, context);
   }
-
 
   void _showDialog(msg) {
     // flutter defined function
@@ -202,6 +192,4 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
-
 }
-

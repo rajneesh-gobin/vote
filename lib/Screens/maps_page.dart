@@ -10,31 +10,31 @@ import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 
-void main() {
-  return runApp(MapsApp());
-}
+// void main() {
+//   return runApp(MapsApp());
+// }
 
-/// This widget will be the root of application.
-class MapsApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: MyHomePage(),
-    );
-  }
-}
+// /// This widget will be the root of application.
+// class MapsApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Scaffold(
+//       body: MyHomePage(),
+//     );
+//   }
+// }
 
 /// This widget is the home page of the application.
-class MyHomePage extends StatefulWidget {
+class MapPage extends StatefulWidget {
   /// Initialize the instance of the [MyHomePage] class.
-  const MyHomePage({Key? key}) : super(key: key);
+  const MapPage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MapPageState createState() => _MapPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState();
+class _MapPageState extends State<MapPage> {
+  _MapPageState();
 
   late List<Model> _data;
   late MapShapeSource _mapSource;

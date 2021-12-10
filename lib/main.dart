@@ -38,7 +38,7 @@ class VoteApp extends StatelessWidget {
                 appBar: AppBar(
                   title: const Text(kAppName),
                 ),
-                body: MapsApp(),
+                body: MapPage(),
               ),
           '/result': (context) => Scaffold(
                 appBar: AppBar(
@@ -54,11 +54,11 @@ class VoteApp extends StatelessWidget {
                 body: ResultScreen(),
               ),
           '/login': (context) => Scaffold(
-            appBar: AppBar(
-              title: const Text(kAppName),
-            ),
-            body: LoginPage(),
-          )
+                appBar: AppBar(
+                  title: const Text(kAppName),
+                ),
+                body: LoginPage(),
+              )
         },
       ),
     );
